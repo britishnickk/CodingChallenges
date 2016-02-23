@@ -1,2 +1,2 @@
 # CodingChallenges
-My solutions to various online coding challenges, probably including HackerRank and Sphere Online Judge
+My solutions to various online coding challenges, probably including HackerRank and UVa
