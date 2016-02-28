@@ -7,7 +7,7 @@ struct dest{
 	int dest;
 	int danger;
 };
-int dijkstra(map<int,dest>* roadsp, int start, int end){
+int dijkstra(map<int,vector<dest>>* roadsp, int start, int end){
 	
 	return -1;
 }
@@ -18,9 +18,7 @@ int main(){
 	cin>>num_cities;
 	cin>>num_roads;
 
-	//int roads[num_roads][3];
-	map<int,dest> roads;
-	//vector<int*> roads;
+	map<int,vector<dest>> roads;
 
 	for(int i=0; i<num_roads; i++){
 		int a;
@@ -32,14 +30,8 @@ int main(){
 		
 		
 		
-		roads[a]=dest{b,danger};
-		roads[b]=dest{a,danger};
-	/*	int* road = new int(3);
-		road[0]=a;
-		road[1]=b;
-		road[2]=danger;
-		roads.push_back(road);
-	*/
+		roads[a].push_back(dest{b,danger});
+		roads[b].push_back(dest{a,danger});
 	}
 
 	int num_tests;
