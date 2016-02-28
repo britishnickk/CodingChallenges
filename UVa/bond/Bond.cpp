@@ -1,6 +1,12 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+
+int dijkstra(vector<int*>* roadsp, int start, int end){
+	
+	return -1;
+}
+
 int main(){
 
 	int num_cities;
@@ -26,8 +32,20 @@ int main(){
 
 	}
 
+	int num_tests;
+	cin>>num_tests;
+
+	for(int i=0; i<num_tests; i++){
+		int start;
+		int end;
+		cin>>start;
+		cin>>end;
+		cout<< dijkstra(&roads,start,end)<< endl;	
+	
+	}
+
 	for(int* road : roads){	//DO THIS LAST
-		cout<< road[0]<<" "<<road[1]<<" "<<road[2]<<endl;
+//		cout<< road[0]<<" "<<road[1]<<" "<<road[2]<<endl;
 		delete[] road;
 
 	}
