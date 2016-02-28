@@ -5,11 +5,8 @@ int main(){
 
 	int num_cities;
 	int num_roads;
-	int garbage;
 	cin>>num_cities;
 	cin>>num_roads;
-	//get rid of endl
-	cin>>garbage;
 
 	//int roads[num_roads][3];
 	vector<int*> roads;
