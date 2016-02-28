@@ -1,12 +1,16 @@
 #include <iostream>
 #include <vector>
+#include <map>
 using namespace std;
 
-int dijkstra(vector<int*>* roadsp, int start, int end){
+struct dest{
+	int dest;
+	int danger;
+};
+int dijkstra(map<int,dest>* roadsp, int start, int end){
 	
 	return -1;
 }
-
 int main(){
 
 	int num_cities;
@@ -15,7 +19,8 @@ int main(){
 	cin>>num_roads;
 
 	//int roads[num_roads][3];
-	vector<int*> roads;
+	map<int,dest> roads;
+	//vector<int*> roads;
 
 	for(int i=0; i<num_roads; i++){
 		int a;
@@ -24,12 +29,17 @@ int main(){
 		cin>>a;
 		cin>>b;
 		cin>>danger;
-		int* road = new int(3);
+		
+		
+		
+		roads[a]=dest{b,danger};
+		roads[b]=dest{a,danger};
+	/*	int* road = new int(3);
 		road[0]=a;
 		road[1]=b;
 		road[2]=danger;
 		roads.push_back(road);
-
+	*/
 	}
 
 	int num_tests;
@@ -44,10 +54,10 @@ int main(){
 	
 	}
 
-	for(int* road : roads){	//DO THIS LAST
+//	for( road : roads){	//DO THIS LAST
 //		cout<< road[0]<<" "<<road[1]<<" "<<road[2]<<endl;
-		delete[] road;
+//		delete[] road;
 
-	}
+//	}
 
 }
