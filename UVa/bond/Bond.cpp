@@ -9,32 +9,32 @@ struct dest{
 	int danger;
 };
 struct road{
+	int danger;
 	int a;
 	int b;
-	int danger;
 };
 int dijkstra(map<int,vector<dest>> roads,int num_cities, int start, int end){
-	vector<int> visited;
-	queue<int> prospective;
-	vector<unsigned int> cities(num_cities+1,-1);
+	priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> p;
+	vector<int> cities(num_cities+1,1111111111);
 	
-	int curr;
+	vector<int> curr;
 	cities[start]=0;
-	prospective.push(start);
-	while(!prospective.empty()){
-		curr=prospective.front();
-		prospective.pop();
-		for(dest d :roads[curr]){
-			if(cities[curr]+d.danger<cities[d.dest]){
-				cities[d.dest]=cities[curr]+d.danger;
-				prospective.push(d.dest);
-			}
-			
-		}
-		
+	for(dest d :roads[start]){
+		p.push(vector<int>{d.danger,start,d.dest});
 	}
-	
-	//for (dest d : roadsp*	
+	curr=p.top();
+	while(curr[0]!=end && !p.empty()){
+		curr=p.top();
+		p.pop();
+		if(curr[0]<cities[curr[2]]){		//if this path is less dangerous 
+							//than any previous one to the city
+			cities[curr[2]]=curr[0];	//update the city w/ the new path
+			for(dest nxt: roads[curr[2]]){	//then for each road leaving the new city
+				p.push(vector<int>{cities[curr[2]]+nxt.danger,curr[2],nxt.dest});
+							//add the road to the priority queue
+			}
+		}
+	}	
 	return cities[end];
 }
 int main(){
@@ -74,10 +74,5 @@ int main(){
 		cout<<endl;
 		cin>>num_cities;
 	}
-//	for( road : roads){	//DO THIS LAST
-//		cout<< road[0]<<" "<<road[1]<<" "<<road[2]<<endl;
-//		delete[] road;
-
-//	}
 
 }
