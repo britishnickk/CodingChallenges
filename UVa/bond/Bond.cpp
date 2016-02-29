@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <queue>
 using namespace std;
 
@@ -8,12 +8,7 @@ struct dest{
 	int dest;
 	int danger;
 };
-struct road{
-	int danger;
-	int a;
-	int b;
-};
-int dijkstra(map<int,vector<dest>> roads,int num_cities, int start, int end){
+int dijkstra(unordered_map<int,vector<dest>> roads,int num_cities, int start, int end){
 	priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> p;
 	vector<int> cities(num_cities+1,1111111111);
 	
@@ -23,7 +18,7 @@ int dijkstra(map<int,vector<dest>> roads,int num_cities, int start, int end){
 		p.push(vector<int>{d.danger,start,d.dest});
 	}
 	curr=p.top();
-	while(curr[0]!=end && !p.empty()){
+	while(curr[1]!=end && !p.empty()){
 		curr=p.top();
 		p.pop();
 		if(curr[0]<cities[curr[2]]){		//if this path is less dangerous 
@@ -46,7 +41,7 @@ int main(){
 		int num_roads;
 		cin>>num_roads;
 
-		map<int,vector<dest>> roads;
+		unordered_map<int,vector<dest>> roads;
 
 		for(int i=0; i<num_roads; i++){
 			int a;
