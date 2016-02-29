@@ -9,13 +9,13 @@ struct dest{
 	int danger;
 };
 int dijkstra(unordered_map<int,vector<dest>> &roads,int num_cities, int start, int end){
-	priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> p;
+	priority_queue<array<int,3>,vector<array<int,3>>,greater<array<int,3>>> p;
 	vector<int> cities(num_cities+1,1111111111);
 	
-	vector<int> curr;
+	array<int,3> curr;
 	cities[start]=0;
 	for(dest d :roads[start]){
-		p.push(vector<int>{d.danger,start,d.dest});
+		p.push(array<int,3>{d.danger,start,d.dest});
 	}
 	curr=p.top();
 	while(curr[1]!=end && !p.empty()){
@@ -25,7 +25,7 @@ int dijkstra(unordered_map<int,vector<dest>> &roads,int num_cities, int start, i
 							//than any previous one to the city
 			cities[curr[2]]=curr[0];	//update the city w/ the new path
 			for(dest nxt: roads[curr[2]]){	//then for each road leaving the new city
-				p.push(vector<int>{cities[curr[2]]+nxt.danger,curr[2],nxt.dest});
+				p.push(array<int,3>{cities[curr[2]]+nxt.danger,curr[2],nxt.dest});
 							//add the road to the priority queue
 			}
 		}
