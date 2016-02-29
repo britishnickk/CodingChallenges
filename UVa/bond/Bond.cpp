@@ -8,7 +8,7 @@ struct dest{
 	int dest;
 	int danger;
 };
-int dijkstra(unordered_map<int,vector<dest>> roads,int num_cities, int start, int end){
+int dijkstra(unordered_map<int,vector<dest>> &roads,int num_cities, int start, int end){
 	priority_queue<vector<int>,vector<vector<int>>,greater<vector<int>>> p;
 	vector<int> cities(num_cities+1,1111111111);
 	
