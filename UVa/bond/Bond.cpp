@@ -18,14 +18,15 @@ int dijkstra(unordered_map<int,vector<dest>> &roads,int num_cities, int start, i
 		p.push(array<int,3>{d.danger,start,d.dest});
 	}
 	curr=p.top();
-	while(curr[1]!=end && !p.empty()){
+	while(curr[1]!=end&&!p.empty() ){//&&!p.empty
 		curr=p.top();
 		p.pop();
 		if(curr[0]<cities[curr[2]]){		//if this path is less dangerous 
 							//than any previous one to the city
 			cities[curr[2]]=curr[0];	//update the city w/ the new path
 			for(dest nxt: roads[curr[2]]){	//then for each road leaving the new city
-				p.push(array<int,3>{cities[curr[2]]+nxt.danger,curr[2],nxt.dest});
+				if(max(cities[curr[2]],nxt.danger)<cities[nxt.dest])	
+					p.push(array<int,3>{max(cities[curr[2]],nxt.danger),curr[2],nxt.dest});
 							//add the road to the priority queue
 			}
 		}
