@@ -11,6 +11,7 @@ num_testcases = int(input())
 #  strings using pickle so that a list can be used as an arguement
 #  to a class being memoized
 #####################################
+
 class MemoizeMutable:
     def __init__(self, fn):
         self.fn = fn
@@ -26,7 +27,8 @@ class MemoizeMutable:
 
         return self.memo[str]
 
-
+#Curently overflows with recursive depth >1000. Either change the
+# recursive depth (very bad), or make the function a generator (very good) 
 def knapsack(items, size):
     size=int(size)
     if size==0:
